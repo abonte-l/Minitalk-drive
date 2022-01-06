@@ -1,0 +1,65 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "server",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/server",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+          {
+              "description": "Activer l'impression en mode Pretty pour gdb",
+              "text": "-enable-pretty-printing",
+              "ignoreFailures": true
+          }
+      ]
+    },
+
+  {
+    "name": "client",
+    "type": "cppdbg",
+    "request": "launch",
+    "program": "${workspaceFolder}/client",
+    "args": ["${input:getServerPID}","hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"],
+    "stopAtEntry": false,
+    "cwd": "${fileDirname}",
+    "environment": [],
+    "externalConsole": false,
+    "MIMode": "gdb",
+    "miDebuggerPath": "/usr/bin/gdb",
+    "setupCommands": 
+    [
+      {
+          "description": "Activer l'impression en mode Pretty pour gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+      }
+    ]
+  }
+  ],
+  "inputs": [
+    {
+      "id": "getServerPID",
+      "type": "command",
+      "command": "shellCommand.execute",
+      "args":{
+        "command":"pgrep server -x"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Compound",
+      "configurations": [
+        "server",
+        "client"
+      ]
+    }
+  ]
+}
